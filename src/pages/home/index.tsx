@@ -11,7 +11,6 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { SkeletonLoading } from "../../components/loadingSkeleton";
-import useSWR from "swr";
 import axios from "axios";
 
 const Home = () => {
@@ -55,8 +54,6 @@ const Home = () => {
                 }}
               />
             </Flex>
-            <Box>Filter by Region</Box>
-          </Flex>
 
           <Box
             as="section"
@@ -64,22 +61,8 @@ const Home = () => {
             gridTemplateColumns="270px 270px 270px 270px"
             justifyContent="space-between"
           >
-            {isLoading ? (
-              <>
-                <SkeletonLoading />
-                <SkeletonLoading />
-                <SkeletonLoading />
-                <SkeletonLoading />
-                <SkeletonLoading />
-                <SkeletonLoading />
-                <SkeletonLoading />
-                <SkeletonLoading />
-              </>
-            ) : (
-              <>
-                {data.map((countries, index) => (
-                  <>
-                    <Box
+            {data.map((countries, index) => (
+              <Box
                       bg="#fff"
                       boxShadow="0px 4px 10px #EFEFEF"
                       borderRadius="0.5rem"
@@ -138,33 +121,29 @@ const Home = () => {
                             {countries.region}
                           </ListItem>
 
-                          <ListItem
-                            mt="0.2rem"
-                            color="#5C5C5C"
-                            fontWeight="600"
-                            fontSize="15px"
-                          >
-                            <Text
-                              as="span"
-                              color="#000"
-                              fontWeight="600"
-                              mr="0.2rem"
-                              fontSize="16px"
-                            >
-                              Capital:
-                            </Text>
-                            {countries.capital}
-                          </ListItem>
-                        </UnorderedList>
-                      </Box>
-                    </Box>
-                  </>
-                ))}
+                    <ListItem
+                      mt="0.2rem"
+                      color="#5C5C5C"
+                      fontWeight="600"
+                      fontSize="15px"
+                    >
+                      <Text
+                        as="span"
+                        color="#000"
+                        fontWeight="600"
+                        mr="0.2rem"
+                        fontSize="16px"
+                      >
+                        Capital:
+                      </Text>
+                      {countries.capital}
+                    </ListItem>
+                  </UnorderedList>
+                </Box>
+              </Box>
               </>
-            )}
+            ))}
           </Box>
-        </Container>
-      </Flex>
     </>
   );
 };
