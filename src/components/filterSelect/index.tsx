@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Button,
@@ -8,7 +9,22 @@ import {
   Input,
 } from "@chakra-ui/react";
 
-const FilterSelect = () => {
+interface IFilterSelect {
+  setSearchInput: React.Dispatch<React.SetStateAction<string>>;
+  inputRef: any;
+}
+
+const FilterSelect = ({ inputRef, setSearchInput }: IFilterSelect) => {
+  let timeout: number;
+
+  const searchInputDelay = () => {
+    clearTimeout(timeout);
+
+    timeout = setTimeout(() => {
+      setSearchInput(inputRef?.current?.value);
+    }, 500);
+  };
+
   return (
     <Flex as="section" justify="space-between" my="3.5rem">
       <Flex
@@ -30,6 +46,8 @@ const FilterSelect = () => {
           _placeholder={{
             color: "#8E8E8E",
           }}
+          ref={inputRef}
+          onChange={searchInputDelay}
         />
       </Flex>
 

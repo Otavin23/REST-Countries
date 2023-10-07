@@ -1,12 +1,15 @@
 import { Header } from "../../components/header";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Flex, Container } from "@chakra-ui/react";
 import { FilterCountries } from "../../components/filterCountries";
 import { api } from "../../service/api";
+import { FilterSelect } from "../../components/filterSelect";
 
 const Home = () => {
   const [data, setData] = useState([]);
-  const [input, setInput] = useState("");
+  const [searchInput, setSearchInput] = useState("");
+
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,14 +30,8 @@ const Home = () => {
 
       <Flex as="main" justify="center">
         <Container maxW="1400px" w="95%">
-          <input
-            type="text"
-            placeholder="hello"
-            value={input}
-            onChange={({ target }) => setInput(target.value)}
-          />
+          <FilterSelect inputRef={inputRef} setSearchInput={setSearchInput}/>
 
-          {/* Use React.memo para memoizar FilterCountries */}
           <FilterCountries data={data} />
         </Container>
       </Flex>
