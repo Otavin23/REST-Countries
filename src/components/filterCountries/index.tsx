@@ -4,7 +4,7 @@ import axios from "axios";
 import { SkeletonLoading } from "../loadingSkeleton/card";
 import { CardCountry } from "../cardCountry";
 
-const FilterCountries = () => {
+const FilterCountries = ({ filterOptions }: any) => {
   const { data, isLoading } = useSWR(
     "https://restcountries.com/v2/all",
     async (url) => {
@@ -13,7 +13,14 @@ const FilterCountries = () => {
     }
   );
 
-  console.log(data);
+  const dataFilter =
+    !isLoading &&
+    data.filter((countries: any) => {
+      if (filterOptions === "all") return countries;
+
+      return countries.region.toLowerCase() === filterOptions;
+    });
+
   return (
     <Box
       as="section"
@@ -34,7 +41,7 @@ const FilterCountries = () => {
         </>
       ) : (
         <>
-          {data.map((country: any, index: number) => (
+          {dataFilter.map((country: any, index: number) => (
             <CardCountry
               key={index}
               image={country.flags.svg}

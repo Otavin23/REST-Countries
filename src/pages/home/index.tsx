@@ -6,7 +6,10 @@ import { FilterSelect } from "../../components/filterSelect";
 
 const Home = () => {
   const [filterRegion, setFilterRegion] = useState(false);
+  const [filterOptions, setFilterOptions] = useState("all");
+  const [countryInput, setCountryInput] = useState("");
 
+  console.log(countryInput);
   return (
     <>
       <Header />
@@ -16,8 +19,10 @@ const Home = () => {
           <FilterSelect
             setFilterRegion={setFilterRegion}
             filterRegion={filterRegion}
+            setFilterOptions={setFilterOptions}
+            setCountryInput={setCountryInput}
           />
-          <FilterCountries />
+          <FilterCountries filterOptions={filterOptions} />
         </Container>
       </Flex>
     </>

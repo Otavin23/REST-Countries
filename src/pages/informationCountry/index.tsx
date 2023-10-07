@@ -28,9 +28,7 @@ const InformationCountry = () => {
   );
 
   console.log(data);
-
-  const handleBorder = async (border) => {
-    console.log(border);
+  const handleBorder = async (border: string) => {
     const { data } = await api.get(`/alpha/${border}`);
     navigate(`/information/${data.name}`);
   };

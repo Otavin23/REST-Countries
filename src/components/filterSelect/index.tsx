@@ -8,7 +8,12 @@ import {
   Input,
 } from "@chakra-ui/react";
 
-const FilterSelect = ({ setFilterRegion, filterRegion }: any) => {
+const FilterSelect = ({
+  setFilterRegion,
+  filterRegion,
+  setFilterOptions,
+  setCountryInput,
+}: any) => {
   return (
     <Flex as="section" justify="space-between" my="3.5rem">
       <Flex
@@ -22,6 +27,7 @@ const FilterSelect = ({ setFilterRegion, filterRegion }: any) => {
         <Image src="../assets/home/search.png" alt="" w="20px" ml="2rem" />
         <Input
           type="text"
+          onChange={({ target }) => setCountryInput(target.value)}
           placeholder="Search for a country..."
           variant="unstyled"
           px="1.5rem"
@@ -60,19 +66,52 @@ const FilterSelect = ({ setFilterRegion, filterRegion }: any) => {
             borderRadius="0.5rem"
             boxShadow="10px 0 10px 0 #ececec"
           >
-            <ListItem m="0.3rem 0" fontWeight="600" fontSize="16px">
+            <ListItem
+              onClick={() => setFilterOptions("all")}
+              m="0.3rem 0"
+              fontWeight="600"
+              fontSize="16px"
+            >
+              All
+            </ListItem>
+            <ListItem
+              onClick={() => setFilterOptions("africa")}
+              m="0.3rem 0"
+              fontWeight="600"
+              fontSize="16px"
+            >
               Africa
             </ListItem>
-            <ListItem m="0.3rem 0" fontWeight="600" fontSize="16px">
+            <ListItem
+              m="0.3rem 0"
+              fontWeight="600"
+              fontSize="16px"
+              onClick={() => setFilterOptions("americas")}
+            >
               America
             </ListItem>
-            <ListItem m="0.3rem 0" fontWeight="600" fontSize="16px">
+            <ListItem
+              m="0.3rem 0"
+              fontWeight="600"
+              fontSize="16px"
+              onClick={() => setFilterOptions("asia")}
+            >
               Asia
             </ListItem>
-            <ListItem m="0.3rem 0" fontWeight="600" fontSize="16px">
+            <ListItem
+              m="0.3rem 0"
+              fontWeight="600"
+              fontSize="16px"
+              onClick={() => setFilterOptions("europe")}
+            >
               Europe
             </ListItem>
-            <ListItem m="0.3rem 0" fontWeight="600" fontSize="16px">
+            <ListItem
+              m="0.3rem 0"
+              fontWeight="600"
+              fontSize="16px"
+              onClick={() => setFilterOptions("oceania")}
+            >
               Oceania
             </ListItem>
           </UnorderedList>
