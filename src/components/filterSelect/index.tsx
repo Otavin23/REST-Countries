@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 
 const FilterSelect = ({ setFilterRegion, filterRegion }: any) => {
-  console.log(filterRegion);
   return (
     <Flex as="section" justify="space-between" my="3.5rem">
       <Flex

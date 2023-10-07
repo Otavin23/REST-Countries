@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import useSWR from "swr";
 import axios from "axios";
-import { SkeletonLoading } from "../loadingSkeleton";
+import { SkeletonLoading } from "../loadingSkeleton/card";
 import { CardCountry } from "../cardCountry";
 
 const FilterCountries = () => {
@@ -13,6 +13,7 @@ const FilterCountries = () => {
     }
   );
 
+  console.log(data);
   return (
     <Box
       as="section"
@@ -38,6 +39,9 @@ const FilterCountries = () => {
               key={index}
               image={country.flags.svg}
               name={country.name}
+              capital={country.capital}
+              population={country.population}
+              region={country.region}
             />
           ))}
         </>
