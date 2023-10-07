@@ -13,8 +13,6 @@ const FilterCountries = () => {
     }
   );
 
-  console.log(!isLoading && data.length);
-
   return (
     <Box
       as="section"

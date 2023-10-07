@@ -52,7 +52,7 @@ const FilterSelect = ({ setFilterRegion, filterRegion }: any) => {
         </Button>
         {filterRegion && (
           <UnorderedList
-            m="1rem 0"
+            m="0.5rem 0"
             w="100%"
             listStyleType="none"
             bg="#fff"
