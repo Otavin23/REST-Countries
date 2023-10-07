@@ -1,28 +1,41 @@
 import { Header } from "../../components/header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Flex, Container } from "@chakra-ui/react";
 import { FilterCountries } from "../../components/filterCountries";
-import { FilterSelect } from "../../components/filterSelect";
+import { api } from "../../service/api";
 
 const Home = () => {
-  const [filterRegion, setFilterRegion] = useState(false);
-  const [filterOptions, setFilterOptions] = useState("all");
-  const [countryInput, setCountryInput] = useState("");
+  const [data, setData] = useState([]);
+  const [input, setInput] = useState("");
 
-  console.log(countryInput);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await api.get("/all");
+        setData(data);
+      } catch (error) {
+        console.error("Erro ao buscar dados:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
       <Header />
 
       <Flex as="main" justify="center">
         <Container maxW="1400px" w="95%">
-          <FilterSelect
-            setFilterRegion={setFilterRegion}
-            filterRegion={filterRegion}
-            setFilterOptions={setFilterOptions}
-            setCountryInput={setCountryInput}
+          <input
+            type="text"
+            placeholder="hello"
+            value={input}
+            onChange={({ target }) => setInput(target.value)}
           />
-          <FilterCountries filterOptions={filterOptions} />
+
+          {/* Use React.memo para memoizar FilterCountries */}
+          <FilterCountries data={data} />
         </Container>
       </Flex>
     </>

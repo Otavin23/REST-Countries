@@ -8,12 +8,7 @@ import {
   Input,
 } from "@chakra-ui/react";
 
-const FilterSelect = ({
-  setFilterRegion,
-  filterRegion,
-  setFilterOptions,
-  setCountryInput,
-}: any) => {
+const FilterSelect = () => {
   return (
     <Flex as="section" justify="space-between" my="3.5rem">
       <Flex
@@ -27,7 +22,6 @@ const FilterSelect = ({
         <Image src="../assets/home/search.png" alt="" w="20px" ml="2rem" />
         <Input
           type="text"
-          onChange={({ target }) => setCountryInput(target.value)}
           placeholder="Search for a country..."
           variant="unstyled"
           px="1.5rem"
@@ -50,72 +44,70 @@ const FilterSelect = ({
           px="1rem"
           fontWeight="600"
           cursor="pointer"
-          onClick={() => setFilterRegion(!filterRegion)}
         >
           Filter by Region
           <Image src="../assets/home/arrow.png" alt="" w="20px" ml="2.5rem" />
         </Button>
-        {filterRegion && (
-          <UnorderedList
-            m="0.5rem 0"
-            w="100%"
-            listStyleType="none"
-            bg="#fff"
-            pos="absolute"
-            p="1rem"
-            borderRadius="0.5rem"
-            boxShadow="10px 0 10px 0 #ececec"
+
+        <UnorderedList
+          m="0.5rem 0"
+          w="100%"
+          listStyleType="none"
+          bg="#fff"
+          pos="absolute"
+          p="1rem"
+          borderRadius="0.5rem"
+          boxShadow="10px 0 10px 0 #ececec"
+        >
+          <ListItem
+            m="0.3rem 0"
+            fontWeight="600"
+            fontSize="16px"
+            cursor="pointer"
           >
-            <ListItem
-              onClick={() => setFilterOptions("all")}
-              m="0.3rem 0"
-              fontWeight="600"
-              fontSize="16px"
-            >
-              All
-            </ListItem>
-            <ListItem
-              onClick={() => setFilterOptions("africa")}
-              m="0.3rem 0"
-              fontWeight="600"
-              fontSize="16px"
-            >
-              Africa
-            </ListItem>
-            <ListItem
-              m="0.3rem 0"
-              fontWeight="600"
-              fontSize="16px"
-              onClick={() => setFilterOptions("americas")}
-            >
-              America
-            </ListItem>
-            <ListItem
-              m="0.3rem 0"
-              fontWeight="600"
-              fontSize="16px"
-              onClick={() => setFilterOptions("asia")}
-            >
-              Asia
-            </ListItem>
-            <ListItem
-              m="0.3rem 0"
-              fontWeight="600"
-              fontSize="16px"
-              onClick={() => setFilterOptions("europe")}
-            >
-              Europe
-            </ListItem>
-            <ListItem
-              m="0.3rem 0"
-              fontWeight="600"
-              fontSize="16px"
-              onClick={() => setFilterOptions("oceania")}
-            >
-              Oceania
-            </ListItem>
-          </UnorderedList>
-        )}
+            All
+          </ListItem>
+          <ListItem
+            m="0.3rem 0"
+            fontWeight="600"
+            fontSize="16px"
+            cursor="pointer"
+          >
+            Africa
+          </ListItem>
+          <ListItem
+            m="0.3rem 0"
+            fontWeight="600"
+            fontSize="16px"
+            cursor="pointer"
+          >
+            America
+          </ListItem>
+          <ListItem
+            m="0.3rem 0"
+            fontWeight="600"
+            fontSize="16px"
+            cursor="pointer"
+          >
+            Asia
+          </ListItem>
+          <ListItem
+            m="0.3rem 0"
+            fontWeight="600"
+            fontSize="16px"
+            cursor="pointer"
+          >
+            Europe
+          </ListItem>
+          <ListItem
+            m="0.3rem 0"
+            fontWeight="600"
+            fontSize="16px"
+            cursor="pointer"
+          >
+            Oceania
+          </ListItem>
+        </UnorderedList>
       </Box>
     </Flex>
   );
