@@ -26,14 +26,14 @@ const CardCountry = ({ image, name, population, region, capital }: IProps) => {
   const shadow = useColorModeValue("#E8E8E8", "#1F2C35");
 
   return (
-    <Link to={`information/${name}`}>
-      <Box
-        bg={bgContent}
-        boxShadow={`0px 4px 10px ${shadow}`}
-        borderRadius="0.5rem"
-        mb="5rem"
-        h="360px"
-      >
+    <Box
+      bg={bgContent}
+      boxShadow={`0px 4px 10px ${shadow}`}
+      borderRadius="0.5rem"
+      mb="5rem"
+      h="360px"
+    >
+      <Link to={`information/${name}`}>
         <Box h="180px">
           <Image
             src={image}
@@ -106,8 +106,8 @@ const CardCountry = ({ image, name, population, region, capital }: IProps) => {
             </ListItem>
           </UnorderedList>
         </Box>
-      </Box>
-    </Link>
+      </Link>
+    </Box>
   );
 };
 

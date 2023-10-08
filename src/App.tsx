@@ -8,9 +8,9 @@ import { Header } from "./components/header";
 const App = () => {
   return (
     <ChakraBaseProvider theme={themeChakra}>
-      <Header />
-
       <BrowserRouter>
+        <Header />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/information/:name" element={<InformationCountry />} />

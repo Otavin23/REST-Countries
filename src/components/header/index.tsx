@@ -7,6 +7,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import "../../styles/theme.css";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const { toggleColorMode } = useColorMode();
@@ -37,8 +38,9 @@ const Header = () => {
           fontSize="25px"
           fontWeight="800"
           mb={{ base: "1rem", lg: "0", md: "0", sm: "1rem" }}
+          cursor="pointer"
         >
-          Where in the world?
+          <Link to="/">Where in the world?</Link>
         </Text>
 
         <Flex as="label" align="center" className="label__checkTheme">
