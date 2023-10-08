@@ -5,6 +5,7 @@ import {
   UnorderedList,
   ListItem,
   Text,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 
@@ -17,13 +18,21 @@ interface IProps {
 }
 
 const CardCountry = ({ image, name, population, region, capital }: IProps) => {
+  const bgContent = useColorModeValue("#fff", "#2B3743");
+  const color = useColorModeValue("#000", "#fff");
+  const subColor = useColorModeValue("#5C5C5C", "#CDD9E5");
+  const textPlace = useColorModeValue("#5C5C5C", "#9EAAB6");
+
+  const shadow = useColorModeValue("#E8E8E8", "#1F2C35");
+
   return (
     <Link to={`information/${name}`}>
       <Box
-        bg="#fff"
-        boxShadow="0px 4px 10px #EFEFEF"
+        bg={bgContent}
+        boxShadow={`0px 4px 10px ${shadow}`}
         borderRadius="0.5rem"
         mb="5rem"
+        h="360px"
       >
         <Box h="180px">
           <Image
@@ -37,20 +46,20 @@ const CardCountry = ({ image, name, population, region, capital }: IProps) => {
         </Box>
 
         <Box p="1.5rem">
-          <Heading as="h3" fontSize="18px">
+          <Heading as="h3" fontSize="18px" color={color}>
             {name}
           </Heading>
 
           <UnorderedList m="1rem 0 0 0" listStyleType="none">
             <ListItem
               mt="0.2rem"
-              color="#5C5C5C"
+              color={textPlace}
               fontWeight="600"
               fontSize="15px"
             >
               <Text
                 as="span"
-                color="#000"
+                color={subColor}
                 fontWeight="600"
                 mr="0.2rem"
                 fontSize="16px"
@@ -62,13 +71,13 @@ const CardCountry = ({ image, name, population, region, capital }: IProps) => {
 
             <ListItem
               mt="0.2rem"
-              color="#5C5C5C"
+              color={textPlace}
               fontWeight="600"
               fontSize="15px"
             >
               <Text
                 as="span"
-                color="#000"
+                color={subColor}
                 fontWeight="600"
                 mr="0.2rem"
                 fontSize="16px"
@@ -80,13 +89,13 @@ const CardCountry = ({ image, name, population, region, capital }: IProps) => {
 
             <ListItem
               mt="0.2rem"
-              color="#5C5C5C"
+              color={textPlace}
               fontWeight="600"
               fontSize="15px"
             >
               <Text
                 as="span"
-                color="#000"
+                color={subColor}
                 fontWeight="600"
                 mr="0.2rem"
                 fontSize="16px"

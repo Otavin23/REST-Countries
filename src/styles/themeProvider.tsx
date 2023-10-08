@@ -2,11 +2,11 @@ import { extendTheme } from "@chakra-ui/react";
 
 const themeChakra = extendTheme({
   styles: {
-    global: {
+    global: (props: { colorMode: string }) => ({
       body: {
-        bg: "hsl(0, 0%, 98%)",
+        bg: props.colorMode === "light" ? "#FAFAFA" : "#202D36",
       },
-    },
+    }),
   },
 
   fonts: {

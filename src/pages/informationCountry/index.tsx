@@ -1,4 +1,3 @@
-import { Header } from "../../components/header";
 import {
   Box,
   Container,
@@ -9,6 +8,7 @@ import {
   ListItem,
   Text,
   Flex,
+  useColorModeValue,
 } from "@chakra-ui/react";
 import useSWR from "swr";
 import { useParams, useNavigate } from "react-router-dom";
@@ -16,6 +16,11 @@ import { api } from "../../service/api";
 import { SkeletonInformation } from "../../components/loadingSkeleton/information";
 
 const InformationCountry = () => {
+  const bgContent = useColorModeValue("#fff", "#2B3743");
+  const subColor = useColorModeValue("#5C5C5C", "#CDD9E5");
+  const textPlace = useColorModeValue("#5C5C5C", "#9EAAB6");
+  const shadow = useColorModeValue("#E8E8E8", "#1F2C35");
+
   const { name } = useParams();
   const navigate = useNavigate();
 
@@ -27,7 +32,6 @@ const InformationCountry = () => {
     }
   );
 
-  console.log(data);
   const handleBorder = async (border: string) => {
     const { data } = await api.get(`/alpha/${border}`);
     navigate(`/information/${data.name}`);
@@ -35,18 +39,17 @@ const InformationCountry = () => {
 
   return (
     <>
-      <Header />
-
-      <Box as="main">
-        <Container maxW="1400px" w="95%">
+      <Flex as="main" justify="center">
+        <Container maxW="1400px" w="95%" p="0" m="0" mb="3rem">
           <Button
+            onClick={() => history.back()}
             my="4.5rem"
-            bg="#fff"
-            boxShadow="0px 4px 10px #DFDFDF"
+            bg={bgContent}
+            boxShadow={`0px 4px 10px ${shadow}`}
             pr="3rem"
             pl="1.5rem"
             py="1.4rem"
-            border="1px solid #DFDFDF"
+            border={`1px solid ${shadow}`}
           >
             <Image
               src="../assets/home/arrowRight.png"
@@ -61,68 +64,97 @@ const InformationCountry = () => {
             <SkeletonInformation />
           ) : (
             <>
-              <Flex as="section" justify="space-between" align="center">
+              <Flex
+                as="section"
+                justify="space-between"
+                direction={{
+                  base: "column",
+                  lg: "row",
+                  md: "column",
+                }}
+                align="center"
+              >
                 <Box>
-                  <Image src={data[0].flags.svg} alt="" w="1250px" h="400px" />
+                  <Image
+                    src={data[0].flags.svg}
+                    alt=""
+                    w="1250px"
+                    h="400px"
+                    objectFit="cover"
+                  />
                 </Box>
 
-                <Box w="100%" ml="8rem">
+                <Box
+                  w="100%"
+                  mt={{ base: "3rem", lg: "0", md: "3rem" }}
+                  ml={{ base: "0", lg: "8rem", md: "0" }}
+                >
                   <Heading as="h1" fontWeight="800" fontSize="30px">
                     {data[0].name}
                   </Heading>
 
-                  <Flex my="1.5rem" justify="space-between">
+                  <Flex
+                    my="1.5rem"
+                    justify="space-between"
+                    direction={{
+                      base: "column",
+                      lg: "row",
+                      md: "row",
+                      sm: "row",
+                    }}
+                  >
                     <UnorderedList listStyleType="none" m="0">
-                      <ListItem mt="0.5rem" color="#434343">
+                      <ListItem mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Native Name:
                         </Text>
                         {data[0].name}
                       </ListItem>
-                      <ListItem mt="0.5rem" color="#434343">
+
+                      <ListItem mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Population:
                         </Text>
                         {data[0].population}
                       </ListItem>
-                      <ListItem mt="0.5rem" color="#434343">
+                      <ListItem mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Region:
                         </Text>
                         {data[0].region}
                       </ListItem>
-                      <ListItem mt="0.5rem" color="#434343">
+                      <ListItem mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Sub Region:
                         </Text>
                         {data[0].subregion}
                       </ListItem>
-                      <ListItem mt="0.5rem" color="#434343">
+                      <ListItem mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Capital:
                         </Text>
@@ -130,35 +162,43 @@ const InformationCountry = () => {
                       </ListItem>
                     </UnorderedList>
 
-                    <UnorderedList listStyleType="none" m="0">
-                      <ListItem mt="0.5rem" color="#434343">
+                    <UnorderedList
+                      listStyleType="none"
+                      m={{
+                        base: "3rem 0 0 0",
+                        lg: "0 0 0 0",
+                        md: "0 0 0 0",
+                        sm: "0 0 0 0",
+                      }}
+                    >
+                      <ListItem mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Top Level Domain:
                         </Text>
                         {data[0].topLevelDomain[0]}
                       </ListItem>
-                      <ListItem mt="0.5rem" color="#434343">
+                      <ListItem mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Currencies:
                         </Text>
                         {data[0].currencies[0].code}
                       </ListItem>
-                      <ListItem display="flex" mt="0.5rem" color="#434343">
+                      <ListItem display="flex" mt="0.5rem" color={textPlace}>
                         <Text
                           as="span"
                           fontWeight="600"
                           mr="0.3rem"
-                          color="#000"
+                          color={subColor}
                         >
                           Languages:
                         </Text>
@@ -169,22 +209,43 @@ const InformationCountry = () => {
                     </UnorderedList>
                   </Flex>
 
-                  <Flex align="center" mt="3rem">
-                    <Text as="span" fontWeight="600" color="#000">
+                  <Flex
+                    align={{
+                      base: "start",
+                      lg: "center",
+                      md: "start",
+                    }}
+                    mt="3rem"
+                    direction={{
+                      base: "column",
+                      lg: "row",
+                      md: "column",
+                    }}
+                  >
+                    <Text as="span" fontWeight="600" color={subColor} mr="1rem">
                       Border Countries:
                     </Text>
 
-                    <UnorderedList display="flex" listStyleType="none">
+                    <UnorderedList
+                      display="flex"
+                      listStyleType="none"
+                      flexWrap="wrap"
+                      m={{
+                        base: "1rem 0 0 0",
+                        lg: "0 0 0 0",
+                        md: "1rem 0 0 0",
+                      }}
+                    >
                       {data[0].borders?.map((borders: any) => (
                         <ListItem
                           onClick={() => handleBorder(borders)}
                           mr="0.5rem"
                           px="1rem"
                           py="0.4rem"
-                          bg="#fff"
-                          boxShadow="0px 4px 10px #EFEFEF"
+                          bg={bgContent}
+                          boxShadow={`0px 4px 10px ${shadow}`}
                           borderRadius="0.3rem"
-                          border="1px solid #EFEFEF"
+                          border={`1px solid ${shadow}`}
                           cursor="pointer"
                         >
                           {borders}
@@ -197,7 +258,7 @@ const InformationCountry = () => {
             </>
           )}
         </Container>
-      </Box>
+      </Flex>
     </>
   );
 };
