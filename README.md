@@ -19,7 +19,7 @@ RestCountries is an innovative project that uses an API to collect comprehensive
 
 <ul>
    <li>
-      <a href="https://react.dev/" target="_blank">React.js</a>
+      <a href="https://react.dev/" target="blank">React.js</a>
    </li>
     <li>
       <a href="https://www.typescriptlang.org/" target="_blank">Typescript</a>
